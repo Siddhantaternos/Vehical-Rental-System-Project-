@@ -1,0 +1,10 @@
+1 CAR Toyota Fortuner 3000 1 7
+2 CAR Honda City 2200 1 5
+3 CAR Hyundai Creta 2500 1 5
+4 CAR Mahindra Thar 3500 1 4
+5 CAR Tata Nexon 2000 1 5
+6 BIKE Yamaha R15 800 1 155
+7 BIKE KTM Duke390 1200 1 373
+8 BIKE RoyalEnfield Classic350 1000 1 349
+9 BIKE Bajaj Pulsar220 700 1 220
+10 BIKE TVS ApacheRTR 750 1 160
