@@ -11,15 +11,16 @@ A **C++ console-based Vehicle Rental System** project designed to demonstrate **
 ## 📖 Table of Contents
 
 1. [Project Overview](#project-overview)
-2. [Features](#features)
-3. [How It Works](#how-it-works)
-4. [Class Structure & OOP Design](#class-structure--oop-design)
-5. [Data Storage](#data-storage)
-6. [File Structure](#file-structure)
-7. [Sample Console Output](#sample-console-output)
-8. [Diagrams](#diagrams)
-9. [How to Run](#how-to-run)
-10. [Future Improvements](#future-improvements)
+2. [DBMS Simulation Core](#DBMS-Simulation-Core)
+3. [Features](#features)
+4. [How It Works](#how-it-works)
+5. [Class Structure & OOP Design](#class-structure--oop-design)
+6. [Data Storage](#data-storage)
+7. [File Structure](#file-structure)
+8. [Sample Console Output](#sample-console-output)
+9. [Diagrams](#diagrams)
+10. [How to Run](#how-to-run)
+11. [Future Improvements](#future-improvements)
 
 ---
 
@@ -52,6 +53,58 @@ It is a **hands-on demonstration of OOP** principles in C++, including:
 | Bulk Loading       | Load multiple vehicles automatically for testing/demo |
 | Unique IDs         | Each vehicle has a unique ID for tracking             |
 | Console Interface  | Simple, menu-driven system for easy navigation        |
+
+---
+
+🚗 Vehicle Rental System (C++ & DBMS Simulation)
+
+A comprehensive console-based application that merges Object-Oriented Programming (OOP) with Database Management System (DBMS) simulation. This project allows users to manage a rental service while demonstrating core relational database engine concepts like integrity constraints, joins, and transactions.
+
+## 🏗️ DBMS Simulation Core
+
+The project includes a dedicated engine that mimics professional SQL behavior through the following features:
+
+1. DDL & Constraints
+
+* Table Structure: Data is logically organized into three virtual tables: vehicles, customers, and rentals.
+* NOT NULL: Every field is strictly validated to ensure it contains data before any insertion.
+* UNIQUE: The system prevents duplicate phone numbers in the customer table to maintain data integrity.
+* CHECK: Values like rent_per_day and days must be positive, and vehicle type is restricted to 'CAR' or 'BIKE'.
+
+* FOREIGN KEY: Referential integrity is enforced; rental records are blocked unless both the customer_id and vehicle_id exist in the parent tables.
+
+2. JOIN Operations
+
+* The system implements relational logic to combine data across multiple tables:
+* INNER JOIN: Generates a comprehensive report by matching existing rentals with their specific customer and vehicle details.
+* LEFT JOIN: Lists all vehicles in the database. If a vehicle has no rental history, the system displays 'NULL' for the rental columns, mirroring standard SQL behavior.
+
+3. TCL (Transaction Control Language)
+
+* To maintain data integrity (ACID properties) during complex operations, the system utilizes a Transaction class:
+* BEGIN: Saves a snapshot of all table data before an operation begins.
+* COMMIT: Finalizes changes and makes them permanent after a successful operation.
+* ROLLBACK: If a constraint is violated or an error occurs, the system restores the tables to their previous state using the saved snapshot.
+
+4. Stored Procedures & Functions
+
+* ProcRentVehicle(): An atomic procedure that handles the multi-step process of checking availability, inserting a rental record, and updating vehicle status in one transaction.
+* CalculateFine(): A stored function that computes a 1.5x penalty for late returns based on the daily rent rate.
+
+⚡ OOP Design & Features
+
+* The application is built on a foundation of strong Object-Oriented principles:
+* Inheritance: Car and Bike classes inherit from a base Vehicle class to share common attributes while maintaining unique properties (like seats or engine CC).
+* Encapsulation: Data members are protected and accessed only through specialized validation methods to ensure safe data modification.
+* Default Values: Attributes like is_available and is_returned utilize default initializers (e.g., DEFAULT TRUE), simulating SQL table defaults.
+
+💾 File Handling & Persistence
+
+* Data is persisted through local text files to ensure records are preserved between program executions.
+
+* Format: ID | TYPE | BRAND | MODEL | RENT | STATUS | EXTRA
+
+# Mechanism: The system automatically loads the state of all virtual tables from vehicles.txt on startup and updates the file whenever a transaction is successfully committed.
 
 ---
 
